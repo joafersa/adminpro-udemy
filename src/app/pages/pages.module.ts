@@ -14,6 +14,8 @@ import { ProgressComponent } from "./progress/progress.component";
 import { Graficas1Component } from "./graficas1/graficas1.component";
 import { GraficaDonutComponent } from "../components/grafica-donut/grafica-donut.component";
 import { AccountSettingsComponent } from "../components/pages/account-settings/account-settings.component";
+import { PromesasComponent } from "./promesas/promesas.component";
+import { RxjsComponent } from "./rxjs/rxjs.component";
 
 // rutas
 import { PAGES_ROUTES } from "./pages.routes";
@@ -29,7 +31,9 @@ import { IncrementadorComponent } from "../components/incrementador/incrementado
     Graficas1Component,
     IncrementadorComponent,
     GraficaDonutComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent
   ],
   exports: [
     PagesComponent,
