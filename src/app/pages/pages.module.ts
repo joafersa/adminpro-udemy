@@ -13,6 +13,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProgressComponent } from "./progress/progress.component";
 import { Graficas1Component } from "./graficas1/graficas1.component";
 import { GraficaDonutComponent } from "../components/grafica-donut/grafica-donut.component";
+import { AccountSettingsComponent } from "../components/pages/account-settings/account-settings.component";
 
 // rutas
 import { PAGES_ROUTES } from "./pages.routes";
@@ -27,7 +28,8 @@ import { IncrementadorComponent } from "../components/incrementador/incrementado
     ProgressComponent,
     Graficas1Component,
     IncrementadorComponent,
-    GraficaDonutComponent
+    GraficaDonutComponent,
+    AccountSettingsComponent
   ],
   exports: [
     PagesComponent,
