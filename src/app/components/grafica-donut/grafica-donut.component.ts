@@ -9,9 +9,9 @@ import { ChartType } from "chart.js";
 })
 export class GraficaDonutComponent implements OnInit {
   @Input() leyenda: string = "";
-  @Input() doughnutChartLabels: string[] = [];
-  @Input() doughnutChartData: number[] = [];
-  @Input() doughnutChartType: string = "";
+  @Input() chartLabels: string[] = [];
+  @Input() chartData: number[] = [];
+  @Input() chartType: string = "";
 
   constructor() {}
 

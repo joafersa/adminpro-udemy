@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { longStackSupport } from "q";
+import { Component, OnInit } from '@angular/core';
+import { longStackSupport } from 'q';
 
 @Component({
-  selector: "app-promesas",
-  templateUrl: "./promesas.component.html",
+  selector: 'app-promesas',
+  templateUrl: './promesas.component.html',
   styles: []
 })
 export class PromesasComponent implements OnInit {
@@ -12,8 +12,8 @@ export class PromesasComponent implements OnInit {
 
     // acaba la promesa
     promesa
-      .then(mensaje => console.log("Terminó la promesa", mensaje))
-      .catch(error => console.log("Error en promesa", error));
+      .then(mensaje => console.log('Terminó la promesa', mensaje))
+      .catch(error => console.error('Error en promesa', error));
   }
 
   ngOnInit() {}

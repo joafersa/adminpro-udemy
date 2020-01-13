@@ -1,13 +1,13 @@
-import { Injectable, Inject } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
+import { Injectable, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class SettingsService {
   ajustes: Ajustes = {
-    temaUrl: "assets/css/colors/default.css",
-    tema: "default"
+    temaUrl: 'assets/css/colors/default.css',
+    tema: 'default'
   };
 
   // se cargan los ajustes en el constructor, al instanciar el servicio
@@ -17,12 +17,14 @@ export class SettingsService {
 
   guardarAjustes() {
     // console.log("Ajustes guardados en localStorage");
-    localStorage.setItem("ajustes", JSON.stringify(this.ajustes));
+    // localStorage solo admite string, convierto el objeto ajustes a string
+    localStorage.setItem('ajustes', JSON.stringify(this.ajustes));
   }
 
   cargarAjustes() {
-    if (localStorage.getItem("ajustes")) {
-      this.ajustes = JSON.parse(localStorage.getItem("ajustes"));
+    if (localStorage.getItem('ajustes')) {
+      // debo convertir el string del localStorage a objeto
+      this.ajustes = JSON.parse(localStorage.getItem('ajustes'));
       // console.log("Ajustes cargados de localStorage");
 
       this.aplicarTema(this.ajustes.tema);
@@ -35,7 +37,7 @@ export class SettingsService {
 
   aplicarTema(tema: string) {
     let url = `assets/css/colors/${tema}.css`;
-    this._document.getElementById("theme").setAttribute("href", url);
+    this._document.getElementById('theme').setAttribute('href', url);
 
     // creo el objeto ajustes y lo guardo en localstorage
     this.ajustes.tema = tema;

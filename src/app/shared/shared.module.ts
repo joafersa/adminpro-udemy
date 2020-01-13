@@ -1,13 +1,14 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-
-import { RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+// necesario para ngif, ngfor, pipes ...
+import { CommonModule } from '@angular/common';
+// necesario para usar routerLink
+import { RouterModule } from '@angular/router';
 
 // componentes
-import { NopagefoundComponent } from "./nopagefound/nopagefound.component";
-import { HeaderComponent } from "./header/header.component";
-import { SidebarComponent } from "./sidebar/sidebar.component";
-import { BreadcrumbsComponent } from "./breadcrumbs/breadcrumbs.component";
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   imports: [RouterModule, CommonModule],
