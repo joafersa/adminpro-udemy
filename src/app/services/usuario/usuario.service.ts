@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,11 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    public _subirArchivoService: SubirArchivoService
+  ) {
     console.log('Servicio de usuario listo');
     this.cargarStorage();
   }
@@ -81,10 +86,52 @@ export class UsuarioService {
       .post(url, usuario) // devuelvo un observable al que nos subscribiremos
       .pipe(
         map((resp: any) => {
-          swal('Usuario creado', usuario.email, 'success');
+          swal('Usuario creado', usuario.nombre, 'success');
           return resp.usuario;
         })
       );
+  }
+
+  // ==============================================
+  //  actualizar usuario
+  // ==============================================
+  actualizarUsuario(usuario: Usuario) {
+    let url =
+      URL_SERVICIOS + '/usuario/' + usuario._id + '?token=' + this.token;
+
+    // console.log(url);
+
+    return this.http
+      .put(url, usuario) // devuelvo un observable al que nos subscribiremos
+      .pipe(
+        map((resp: any) => {
+          // actualizo localStorage con el usuario de la respuesta
+          let usuarioBD = resp.usuario;
+          this.guardarStorage(usuarioBD._id, this.token, usuarioBD);
+
+          swal('Usuario actualizado', usuario.nombre, 'success');
+          return true;
+        })
+      );
+  }
+
+  // ==============================================
+  //  cambiar imagen de usuario id
+  // ==============================================
+  cambiarImagen(archivo: File, id: string) {
+    this._subirArchivoService
+      .subirArchivo(archivo, 'usuarios', id)
+      .then((resp: any) => {
+        console.log(resp);
+        this.usuario.img = resp.usuario.img;
+        // mensaje
+        swal('Imagen actualizada', this.usuario.nombre, 'success');
+        // actualizo storage
+        this.guardarStorage(id, this.token, this.usuario);
+      })
+      .catch(resp => {
+        console.log(resp);
+      });
   }
 
   // ==============================================
@@ -96,6 +143,7 @@ export class UsuarioService {
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
 
+    // necesario para comprobar si estoy logueado
     this.usuario = usuario;
     this.token = token;
   }

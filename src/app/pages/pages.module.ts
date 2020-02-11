@@ -1,29 +1,33 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 // modulos
-import { SharedModule } from "../shared/shared.module";
-import { FormsModule } from "@angular/forms";
+import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 // ng2-charts
-import { ChartsModule } from "ng2-charts";
+import { ChartsModule } from 'ng2-charts';
 
 // componentes
-import { PagesComponent } from "./pages.component";
+import { PagesComponent } from './pages.component';
 
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { ProgressComponent } from "./progress/progress.component";
-import { Graficas1Component } from "./graficas1/graficas1.component";
-import { GraficaDonutComponent } from "../components/grafica-donut/grafica-donut.component";
-import { AccountSettingsComponent } from "./account-settings/account-settings.component";
-import { PromesasComponent } from "./promesas/promesas.component";
-import { RxjsComponent } from "./rxjs/rxjs.component";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProgressComponent } from './progress/progress.component';
+import { Graficas1Component } from './graficas1/graficas1.component';
+import { GraficaDonutComponent } from '../components/grafica-donut/grafica-donut.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
+
+// pipes
+import { PipesModule } from '../pipes/pipes.module';
 
 // rutas
-import { PAGES_ROUTES } from "./pages.routes";
+import { PAGES_ROUTES } from './pages.routes';
 
 // temporal
-import { IncrementadorComponent } from "../components/incrementador/incrementador.component";
+import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import { IncrementadorComponent } from "../components/incrementador/incrementado
     GraficaDonutComponent,
     AccountSettingsComponent,
     PromesasComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [
     PagesComponent,
@@ -43,6 +48,13 @@ import { IncrementadorComponent } from "../components/incrementador/incrementado
     ProgressComponent,
     Graficas1Component
   ],
-  imports: [SharedModule, PAGES_ROUTES, FormsModule, ChartsModule, CommonModule]
+  imports: [
+    SharedModule,
+    PAGES_ROUTES,
+    FormsModule,
+    ChartsModule,
+    CommonModule,
+    PipesModule
+  ]
 })
 export class PagesModule {}

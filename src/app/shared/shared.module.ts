@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // necesario para usar routerLink
 import { RouterModule } from '@angular/router';
+// pipes
+import { PipesModule } from '../pipes/pipes.module';
 
 // componentes
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
@@ -11,7 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, PipesModule],
   declarations: [
     NopagefoundComponent,
     HeaderComponent,

@@ -66,7 +66,12 @@ export class LoginComponent implements OnInit {
       // console.log(token);
       this._usuarioService.loginGoogle(token).subscribe(resp => {
         console.log(resp);
-        this.router.navigate(['/dashboard']);
+
+        //this.router.navigate(['/dashboard']); a veces va mal, lo reemplazo por redirección manual
+        window.location.href = '#/dashboard';
+
+        // toda la linea anterior se puede sustituir por lo siguiente, porque no me interesa la respuesta
+        // this._usuarioService.loginGoogle(token).subscribe(() => window.location.href = '#/dashboard');
       });
     });
   }
