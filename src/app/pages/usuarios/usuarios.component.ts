@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/services.index';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
+//import swal from 'sweetalert';
 declare var swal: any;
 
 @Component({
@@ -92,6 +93,7 @@ export class UsuariosComponent implements OnInit {
         this._usuarioService.borrarUsuario(usuario._id).subscribe(borrado => {
           // console.log(borrado);
           this.desde = 0; // vuelvo al 1º
+          // cargo de nuevo la lista
           this.cargarUsuarios();
         });
       }

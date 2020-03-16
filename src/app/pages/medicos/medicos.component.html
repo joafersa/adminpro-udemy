@@ -1,1 +1,70 @@
-<p>medicos works!</p>
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input #input type="text" class="form-control" placeholder="Buscar médico..."
+          (keyup)="buscarMedico(input.value)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="cargando">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+      <strong>Cargando</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Espere, por favor</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <button type="button" class="btn btn-rounded btn-primary" [routerLink]="['/medico', 'nuevo']">
+            <i class="fa fa-plus"></i> Crear médico
+          </button>
+        </div>
+        <h3 class="card-title">Médicos (<small>{{totalRegistros}}</small>)</h3>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Hospital</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let medico of medicos">
+              <td class="w70">
+                <img [src]="medico.img | imagen:'medico'" class="img-50 img-circle">
+              </td>
+              <td>{{medico.nombre}}</td>
+              <td>{{medico.hospital.nombre}}</td>
+              <td>
+                <button class="mr-1 btn btn-primary" [routerLink]="['/medico', medico._id]">
+                  <i class="fa fa-edit"></i>
+                </button>
+
+                <button class="mr-1 btn btn-danger" (click)=borrarMedico(medico)>
+                  <i class="fa fa-trash-o"></i>
+                </button>
+
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

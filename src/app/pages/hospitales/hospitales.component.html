@@ -1,1 +1,69 @@
-<p>hospitales works!</p>
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input #input type="text" class="form-control" placeholder="Buscar hospital..."
+          (keyup)="buscarHospital(input.value)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="cargando">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+      <strong>Cargando</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Espere, por favor</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <button type="button" class="btn btn-rounded btn-primary" (click)="crearHospital()">
+            <i class="fa fa-plus"></i> Crear hospital
+          </button>
+        </div>
+        <h3 class="card-title">Hospitales (<small>{{totalRegistros}}</small>)</h3>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hospital of hospitales">
+              <td class="w70">
+                <img [src]="hospital.img | imagen:'hospital'" class="img-50 pointer"
+                  (click)="mostrarModal(hospital._id)">
+              </td>
+              <td>
+                <input [(ngModel)]="hospital.nombre" name="nombre" class="form-control">
+              </td>
+              <td>
+                <button class="mr-1 btn btn-primary" (click)="guardarHospital(hospital)">
+                  <i class="fa fa-save"></i>
+                </button>
+
+                <button class="mr-1 btn btn-danger" (click)=borrarHospital(hospital)>
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
