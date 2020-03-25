@@ -4,8 +4,7 @@ import { MedicoService } from '../../services/services.index';
 import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload.service';
 import { MedicoComponent } from './medico.component';
 
-//import swal from 'sweetalert';
-declare var swal: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-medicos',
@@ -60,17 +59,17 @@ export class MedicosComponent implements OnInit {
 
   borrarMedico(medico: Medico) {
     // console.log(medico);
-    swal({
+    Swal.fire({
       title: '¿Está seguro?',
       text: 'Va a borrar el medico ' + medico.nombre,
       icon: 'warning',
-      buttons: true,
-      dangerMode: true
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar'
     }).then(borrar => {
       // devuelve true si se responde OK
       // console.log(borrar);
 
-      if (borrar) {
+      if (borrar.value) {
         this._medicoService.borrarMedico(medico._id).subscribe(borrado => {
           // console.log(borrado);
           // cargo de nuevo la lista

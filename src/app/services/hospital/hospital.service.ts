@@ -3,8 +3,7 @@ import { Hospital } from '../../models/hospital.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
-//import swal from 'sweetalert';
-declare var swal: any;
+import Swal from 'sweetalert2';
 import { UsuarioService } from '../usuario/usuario.service';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
@@ -36,7 +35,7 @@ export class HospitalService {
         .post(url, { nombre }) // devuelvo un observable al que nos subscribiremos
         .pipe(
           map((resp: any) => {
-            swal('Hospital creado', nombre, 'success');
+            Swal.fire('Hospital creado', nombre, 'success');
             return resp.hospital;
           })
         )
@@ -60,7 +59,7 @@ export class HospitalService {
       .put(url, hospital) // devuelvo un observable al que nos subscribiremos
       .pipe(
         map((resp: any) => {
-          swal('Hospital actualizado', hospital.nombre, 'success');
+          Swal.fire('Hospital actualizado', hospital.nombre, 'success');
           return true;
         })
       );
@@ -76,7 +75,7 @@ export class HospitalService {
         console.log(resp);
         this.hospital.img = resp.hospital.img;
         // mensaje
-        swal('Imagen actualizada', this.hospital.nombre, 'success');
+        Swal.fire('Imagen actualizada', this.hospital.nombre, 'success');
       })
       .catch(resp => {
         console.log(resp);
@@ -130,7 +129,11 @@ export class HospitalService {
 
     return this.http.delete(url).pipe(
       map(resp => {
-        swal('Hospital borrado', 'El hospital ha sido eliminado', 'success');
+        Swal.fire(
+          'Hospital borrado',
+          'El hospital ha sido eliminado',
+          'success'
+        );
         return true;
       })
     );

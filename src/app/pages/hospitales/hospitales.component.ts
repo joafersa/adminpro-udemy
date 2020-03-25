@@ -3,8 +3,7 @@ import { Hospital } from 'src/app/models/hospital.model';
 import { HospitalService } from '../../services/services.index';
 import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload.service';
 
-//import swal from 'sweetalert';
-declare var swal: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-hospitales',
@@ -60,17 +59,17 @@ export class HospitalesComponent implements OnInit {
 
   borrarHospital(hospital: Hospital) {
     // console.log(hospital);
-    swal({
+    Swal.fire({
       title: '¿Está seguro?',
       text: 'Va a borrar el hospital ' + hospital.nombre,
       icon: 'warning',
-      buttons: true,
-      dangerMode: true
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar'
     }).then(borrar => {
       // devuelve true si se responde OK
       // console.log(borrar);
 
-      if (borrar) {
+      if (borrar.value) {
         this._hospitalService
           .borrarHospital(hospital._id)
           .subscribe(borrado => {
@@ -87,19 +86,17 @@ export class HospitalesComponent implements OnInit {
   }
 
   crearHospital() {
-    swal({
+    Swal.fire({
       title: 'Nuevo hospital',
+      input: 'text',
       text: 'Introduzca el nombre del hospital',
-      content: 'input',
-      icon: 'info',
-      buttons: true,
-      dangerMode: true
-    }).then((nombre: string) => {
-      if (!nombre || nombre.length === 0) {
+      icon: 'info'
+    }).then(nombre => {
+      if (!nombre || nombre.value.length === 0) {
         return;
       }
 
-      this._hospitalService.crearHospital(nombre).subscribe(hospital => {
+      this._hospitalService.crearHospital(nombre.value).subscribe(hospital => {
         // console.log(hospital);
         // cargo de nuevo la lista
         this.cargarHospitales();

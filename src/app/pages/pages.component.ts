@@ -9,6 +9,8 @@ declare function init_plugins();
   styles: []
 })
 export class PagesComponent implements OnInit {
+  anyo: number = new Date().getFullYear();
+
   constructor() {}
 
   ngOnInit() {

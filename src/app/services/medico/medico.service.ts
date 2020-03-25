@@ -3,8 +3,7 @@ import { Medico } from 'src/app/models/medico.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
-import swal from 'sweetalert';
-//declare var swal: any;
+import Swal from 'sweetalert2';
 import { UsuarioService } from '../usuario/usuario.service';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
@@ -33,7 +32,7 @@ export class MedicoService {
         .put(url, medico) // devuelvo un observable al que nos subscribiremos
         .pipe(
           map((resp: any) => {
-            swal('Médico actualizado', medico.nombre, 'success');
+            Swal.fire('Médico actualizado', medico.nombre, 'success');
             return resp.medico;
           })
         );
@@ -44,7 +43,7 @@ export class MedicoService {
         .post(url, medico) // devuelvo un observable al que nos subscribiremos
         .pipe(
           map((resp: any) => {
-            swal('Médico creado', medico.nombre, 'success');
+            Swal.fire('Médico creado', medico.nombre, 'success');
             return resp.medico;
           })
         );
@@ -94,7 +93,7 @@ export class MedicoService {
 
     return this.http.delete(url).pipe(
       map(resp => {
-        swal('Médico borrado', 'El médico ha sido eliminado', 'success');
+        Swal.fire('Médico borrado', 'El médico ha sido eliminado', 'success');
         return true;
       })
     );

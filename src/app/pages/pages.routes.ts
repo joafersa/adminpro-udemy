@@ -7,12 +7,13 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuard } from '../services/services.index';
+import { LoginGuard, AdminGuard } from '../services/services.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 const pagesRoutes: Routes = [
   {
@@ -76,10 +77,19 @@ const pagesRoutes: Routes = [
           descripcion: 'Descripción de Perfil del usuario'
         }
       },
+      {
+        path: 'busqueda/:termino',
+        component: BusquedaComponent,
+        data: {
+          titulo: 'Buscador',
+          descripcion: 'Descripción de Buscador'
+        }
+      },
 
       // Mantenimientos
       {
         path: 'usuarios',
+        canActivate: [AdminGuard],
         component: UsuariosComponent,
         data: {
           titulo: 'Mantenimiento de usuarios',

@@ -24,6 +24,7 @@ import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 // pipes
 import { PipesModule } from '../pipes/pipes.module';
@@ -50,7 +51,8 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
     MedicosComponent,
     MedicoComponent,
     HospitalesComponent,
-    ModalUploadComponent
+    ModalUploadComponent,
+    BusquedaComponent
   ],
   exports: [
     PagesComponent,

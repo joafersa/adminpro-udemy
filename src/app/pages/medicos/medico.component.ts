@@ -8,8 +8,7 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload.service';
-//import swal from 'sweetalert';
-declare var swal: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-medico',

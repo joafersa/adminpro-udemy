@@ -3,8 +3,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/services.index';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
-//import swal from 'sweetalert';
-declare var swal: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios',
@@ -72,24 +71,24 @@ export class UsuariosComponent implements OnInit {
     // console.log(usuario);
     // el usuario que quiero borrar no debe ser el usuario con el que estoy logueado
     if (usuario._id === this._usuarioService.usuario._id) {
-      swal(
+      Swal.fire(
         'No se puede borrar el usuario',
         'No puede borrarse a si mismo',
         'error'
       );
       return;
     }
-    swal({
+    Swal.fire({
       title: '¿Está seguro?',
       text: 'Va a borrar el usuario ' + usuario.nombre,
       icon: 'warning',
-      buttons: true,
-      dangerMode: true
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar'
     }).then(borrar => {
       // devuelve true si se responde OK
       // console.log(borrar);
 
-      if (borrar) {
+      if (borrar.value) {
         this._usuarioService.borrarUsuario(usuario._id).subscribe(borrado => {
           // console.log(borrado);
           this.desde = 0; // vuelvo al 1º

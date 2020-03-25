@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/services.index';
-//import swal from 'sweetalert';
-declare var swal: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -43,7 +42,11 @@ export class ProfileComponent implements OnInit {
 
     // validacion
     if (archivo.type.indexOf('image') < 0) {
-      swal('El archivo seleccionado no es una imagen', archivo.name, 'error');
+      Swal.fire(
+        'El archivo seleccionado no es una imagen',
+        archivo.name,
+        'error'
+      );
       this.imagenSubir = null;
       return;
     }
