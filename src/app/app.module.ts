@@ -14,19 +14,29 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 
 // servicios
 import { ServiceModule } from './services/service.module';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    // necesario ponerlo aquí por el lazy load
+    PagesComponent
+  ],
   imports: [
     BrowserModule,
     APP_ROUTES,
-    PagesModule,
+    // PagesModule, // lo quito porque lo estoy cargando de forma dinámica con el lazy load
     FormsModule,
     ReactiveFormsModule,
-    ServiceModule
+    ServiceModule,
+    // necesario ponerlo aquí por el lazy load
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

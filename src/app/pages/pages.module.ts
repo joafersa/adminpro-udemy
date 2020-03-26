@@ -23,7 +23,6 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 
 // pipes
@@ -37,7 +36,7 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 
 @NgModule({
   declarations: [
-    PagesComponent,
+    // PagesComponent, // pasa al app.module
     DashboardComponent,
     ProgressComponent,
     Graficas1Component,
@@ -51,15 +50,10 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
     MedicosComponent,
     MedicoComponent,
     HospitalesComponent,
-    ModalUploadComponent,
+    // ModalUploadComponent, // está en shared
     BusquedaComponent
   ],
-  exports: [
-    PagesComponent,
-    DashboardComponent,
-    ProgressComponent,
-    Graficas1Component
-  ],
+  exports: [DashboardComponent, ProgressComponent, Graficas1Component],
   imports: [
     SharedModule,
     PAGES_ROUTES,

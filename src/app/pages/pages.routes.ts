@@ -14,115 +14,221 @@ import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
+// implentación de lazy load: pagesRoutes solo rutas hijas
 const pagesRoutes: Routes = [
   {
-    path: '',
-    component: PagesComponent,
-    canActivate: [LoginGuard],
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-        data: {
-          titulo: 'Dashboard',
-          descripcion: 'Descripción de Dashboard'
-        }
-      },
-      {
-        path: 'progress',
-        component: ProgressComponent,
-        data: {
-          titulo: 'ProgressBar',
-          descripcion: 'Descripción de ProgressBar'
-        }
-      },
-      {
-        path: 'graficas1',
-        component: Graficas1Component,
-        data: {
-          titulo: 'Gráficas',
-          descripcion: 'Descripción de Gráficas'
-        }
-      },
-      {
-        path: 'promesas',
-        component: PromesasComponent,
-        data: {
-          titulo: 'Promesas',
-          descripcion: 'Descripción de Promesas'
-        }
-      },
-      {
-        path: 'rxjs',
-        component: RxjsComponent,
-        data: {
-          titulo: 'RxJs',
-          descripcion: 'Descripción de RxJs'
-        }
-      },
-      {
-        path: 'account-settings',
-        component: AccountSettingsComponent,
-        data: {
-          titulo: 'Ajustes del tema',
-          descripcion: 'Descripción de Ajustes del tema'
-        }
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        data: {
-          titulo: 'Perfil del usuario',
-          descripcion: 'Descripción de Perfil del usuario'
-        }
-      },
-      {
-        path: 'busqueda/:termino',
-        component: BusquedaComponent,
-        data: {
-          titulo: 'Buscador',
-          descripcion: 'Descripción de Buscador'
-        }
-      },
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [VerificaTokenGuard],
+    data: {
+      titulo: 'Dashboard',
+      descripcion: 'Descripción de Dashboard'
+    }
+  },
+  {
+    path: 'progress',
+    component: ProgressComponent,
+    data: {
+      titulo: 'ProgressBar',
+      descripcion: 'Descripción de ProgressBar'
+    }
+  },
+  {
+    path: 'graficas1',
+    component: Graficas1Component,
+    data: {
+      titulo: 'Gráficas',
+      descripcion: 'Descripción de Gráficas'
+    }
+  },
+  {
+    path: 'promesas',
+    component: PromesasComponent,
+    data: {
+      titulo: 'Promesas',
+      descripcion: 'Descripción de Promesas'
+    }
+  },
+  {
+    path: 'rxjs',
+    component: RxjsComponent,
+    data: {
+      titulo: 'RxJs',
+      descripcion: 'Descripción de RxJs'
+    }
+  },
+  {
+    path: 'account-settings',
+    component: AccountSettingsComponent,
+    data: {
+      titulo: 'Ajustes del tema',
+      descripcion: 'Descripción de Ajustes del tema'
+    }
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    data: {
+      titulo: 'Perfil del usuario',
+      descripcion: 'Descripción de Perfil del usuario'
+    }
+  },
+  {
+    path: 'busqueda/:termino',
+    component: BusquedaComponent,
+    data: {
+      titulo: 'Buscador',
+      descripcion: 'Descripción de Buscador'
+    }
+  },
 
-      // Mantenimientos
-      {
-        path: 'usuarios',
-        canActivate: [AdminGuard],
-        component: UsuariosComponent,
-        data: {
-          titulo: 'Mantenimiento de usuarios',
-          descripcion: 'Descripción de Mantenimiento de usuarios'
-        }
-      },
-      {
-        path: 'hospitales',
-        component: HospitalesComponent,
-        data: {
-          titulo: 'Mantenimiento de hospitales',
-          descripcion: 'Descripción de Mantenimiento de hospitales'
-        }
-      },
-      {
-        path: 'medicos',
-        component: MedicosComponent,
-        data: {
-          titulo: 'Mantenimiento de médicos',
-          descripcion: 'Descripción de Mantenimiento de médicos'
-        }
-      },
-      {
-        path: 'medico/:id',
-        component: MedicoComponent,
-        data: {
-          titulo: 'Actualizar médico',
-          descripcion: 'Descripción de Actualizar médico'
-        }
-      },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
-    ]
-  }
+  // Mantenimientos
+  {
+    path: 'usuarios',
+    canActivate: [AdminGuard],
+    component: UsuariosComponent,
+    data: {
+      titulo: 'Mantenimiento de usuarios',
+      descripcion: 'Descripción de Mantenimiento de usuarios'
+    }
+  },
+  {
+    path: 'hospitales',
+    component: HospitalesComponent,
+    data: {
+      titulo: 'Mantenimiento de hospitales',
+      descripcion: 'Descripción de Mantenimiento de hospitales'
+    }
+  },
+  {
+    path: 'medicos',
+    component: MedicosComponent,
+    data: {
+      titulo: 'Mantenimiento de médicos',
+      descripcion: 'Descripción de Mantenimiento de médicos'
+    }
+  },
+  {
+    path: 'medico/:id',
+    component: MedicoComponent,
+    data: {
+      titulo: 'Actualizar médico',
+      descripcion: 'Descripción de Actualizar médico'
+    }
+  },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
+
+// const pagesRoutes: Routes = [
+//   {
+//     path: '',
+//     component: PagesComponent,
+//     canActivate: [LoginGuard],
+//     children: [
+//       {
+//         path: 'dashboard',
+//         component: DashboardComponent,
+//         data: {
+//           titulo: 'Dashboard',
+//           descripcion: 'Descripción de Dashboard'
+//         }
+//       },
+//       {
+//         path: 'progress',
+//         component: ProgressComponent,
+//         data: {
+//           titulo: 'ProgressBar',
+//           descripcion: 'Descripción de ProgressBar'
+//         }
+//       },
+//       {
+//         path: 'graficas1',
+//         component: Graficas1Component,
+//         data: {
+//           titulo: 'Gráficas',
+//           descripcion: 'Descripción de Gráficas'
+//         }
+//       },
+//       {
+//         path: 'promesas',
+//         component: PromesasComponent,
+//         data: {
+//           titulo: 'Promesas',
+//           descripcion: 'Descripción de Promesas'
+//         }
+//       },
+//       {
+//         path: 'rxjs',
+//         component: RxjsComponent,
+//         data: {
+//           titulo: 'RxJs',
+//           descripcion: 'Descripción de RxJs'
+//         }
+//       },
+//       {
+//         path: 'account-settings',
+//         component: AccountSettingsComponent,
+//         data: {
+//           titulo: 'Ajustes del tema',
+//           descripcion: 'Descripción de Ajustes del tema'
+//         }
+//       },
+//       {
+//         path: 'profile',
+//         component: ProfileComponent,
+//         data: {
+//           titulo: 'Perfil del usuario',
+//           descripcion: 'Descripción de Perfil del usuario'
+//         }
+//       },
+//       {
+//         path: 'busqueda/:termino',
+//         component: BusquedaComponent,
+//         data: {
+//           titulo: 'Buscador',
+//           descripcion: 'Descripción de Buscador'
+//         }
+//       },
+
+//       // Mantenimientos
+//       {
+//         path: 'usuarios',
+//         canActivate: [AdminGuard],
+//         component: UsuariosComponent,
+//         data: {
+//           titulo: 'Mantenimiento de usuarios',
+//           descripcion: 'Descripción de Mantenimiento de usuarios'
+//         }
+//       },
+//       {
+//         path: 'hospitales',
+//         component: HospitalesComponent,
+//         data: {
+//           titulo: 'Mantenimiento de hospitales',
+//           descripcion: 'Descripción de Mantenimiento de hospitales'
+//         }
+//       },
+//       {
+//         path: 'medicos',
+//         component: MedicosComponent,
+//         data: {
+//           titulo: 'Mantenimiento de médicos',
+//           descripcion: 'Descripción de Mantenimiento de médicos'
+//         }
+//       },
+//       {
+//         path: 'medico/:id',
+//         component: MedicoComponent,
+//         data: {
+//           titulo: 'Actualizar médico',
+//           descripcion: 'Descripción de Actualizar médico'
+//         }
+//       },
+//       { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+//     ]
+//   }
+// ];
 // no usarmos forRoot, sino forChild porque son rutas hijas
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes);
